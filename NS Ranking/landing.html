@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <title>
+            Landing page
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+        <style>
+            body{
+                background-image: url("images/ns_village.jpg");
+                background-attachment: fixed;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+        </style>
+    </head>
+    <body class="row" background="#2ecc71">
+        
+        <div class="container my-auto">
+            <div class="heading text-center mb-5">
+                <h1 style="color: #F8EFBA";>Ninja Saga Tools</h1>
+            </div>
+            <div class="card-deck mx-auto row align-items-center">
+                <div class="col-xl-4 col-sm-12">
+                    <div class="card" style="height: 25rem;">
+                        <div class="card-header">Clan Rank</div>
+                        <div class="card-body clan-ranking" style="overflow-y: scroll;">
+                            <div class="spinner-border"></div>
+                        </div> 
+                        <a id="clan-page" href="index.html" class="main-page-link"><div class="card-footer">View full list
+                                <i class="fas fa-angle-right ml-1"></i></div></a>
+                    </div>
+                </div>
+                
+                <div class="col-xl-4 col-sm-12">
+                    <div class="card" style="height: 25rem;">
+                        <div class="card-header">Crew Rank</div>
+                        <div class="card-body crew-ranking" style="overflow-y: scroll;">
+                            <div class="spinner-border"></div>
+                        </div> 
+                        <a id="crew-page" href="crew.html"><div class="card-footer">View full list
+                                <i class="fas fa-angle-right ml-1"></i></div></a>
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-sm-12">
+                    <div class="card download-app" style="height: 25rem;">
+                        <div class="card-header">Download Android App</div>
+                        <div class="card-body text-center">
+                            <img src="images/app-logo.png" height="200px" width="200px"><br>
+                            <button class="btn btn-primary">Download</button>
+                        </div> 
+                        <a id="download-page" href="download.html"><div class="card-footer">View feature list
+                                <i class="fas fa-angle-right ml-1"></i></div></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            $(document).ready(function(){
+                $.ajax({
+                    type:'POST',
+                    url:'landing_clan.php',
+                    data:{
+                        clcr:"clan"
+                    },
+                    success:function(data){
+                        console.log(data);
+                        $('.clan-ranking').html(data);
+                    },
+                    error:function(){
+                        alert('error loading')
+                    }
+                });
+
+                $.ajax({
+                    type:'POST',
+                    url:'landing_clan.php',
+                    data:{
+                        clcr:"crew"
+                    },
+                    success:function(data){
+                        console.log(data);
+                        $('.crew-ranking').html(data);
+                    },
+                    error:function(){
+                        alert('error loading')
+                    }
+                });
+
+                $('#clan-page').hover(function(){
+                    $('.fas').animate({
+                        "margin-right":"20px"
+                    });
+                });
+            })
+        </script>
+
+    </body>
+
+</html>
